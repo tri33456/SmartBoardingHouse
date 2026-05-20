@@ -1,0 +1,27 @@
+Bước 1: Thiết lập Cơ sở dữ liệu
+Mở MySQL và tạo database mới:
+
+	CREATE DATABASE smartboardinghouse;
+Kiểm tra thông tin đăng nhập trong database.py:
+
+Bước 2: Cấu hình và Chạy Backend (FastAPI)
+Cài đặt các thư viện Python:
+	pip install fastapi uvicorn sqlalchemy pymysql pydantic
+Khởi chạy server:
+	uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+
+Bước 3: Nạp Code cho ESP8266Cập nhật thông tin WiFi trong mã nguồn:ssid = ""   password = ""   
+Đảm bảo địa chỉ serverUrl trỏ đúng về IP máy tính chạy FastAPI (Ví dụ: http://192.168.1.131:8000/update-sensor).  
+Nạp lần lượt 3 file .ino vào các mạch tương ứng.
+	
+Bước 4: Khởi chạy Backend API (FastAPI)
+Backend đảm nhận nhiệm vụ nhận dữ liệu từ các mạch ESP8266 và tính toán hóa đơn.
+
+# Chạy tại thư mục chứa file main.py
+uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+
+Bước 5: Khởi chạy Giao diện Dashboard (Streamlit)
+Dashboard cung cấp quyền truy cập cho Chủ trọ (Landlord) và Khách thuê (Tenant).
+
+# Chạy tại thư mục chứa file app.py
+streamlit run app.py
